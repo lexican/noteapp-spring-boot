@@ -1,9 +1,7 @@
-package com.kun.noteapp.models;
+package com.kun.noteapp.dto.requests;
 
-import java.util.Date;
-
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,11 +12,12 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-@Builder
-public class NoteModel {
-	private String id;
+public class UpdateNoteRequest {
+	@NotBlank
 	private String title;
-	private String decription;
-	private Date createdAt;
-	private Date updatedAt;
+	@NotBlank
+	private String description;
+	@NotBlank
+	private String noteId;
+
 }

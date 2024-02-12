@@ -1,6 +1,7 @@
 package com.kun.noteapp.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,7 +18,7 @@ public class NoteService {
 		return notes;
 	}
 	
-	public Optional<NoteModel> getNote(Long noteId) {
+	public Optional<NoteModel> getNote(String noteId) {
 		NoteModel note = null;
 		
 		for(NoteModel noteItem : notes) {
@@ -35,20 +36,28 @@ public class NoteService {
 	}
 	
 	
-	public List<NoteModel> updateNote(String title, String description, Long noteId) {
+	public Optional<NoteModel> updateNote(String title, String description, String noteId) {
+		
+		System.out.println("");
+		System.out.println("");
+		
+		System.out.println("Title : " + title);
+		System.out.println("Description : " + description);
+		System.out.println("NoteId : " + noteId);
 		
 		for(NoteModel noteItem : notes) {
-			if(noteItem.getId() == noteId) {
+			System.out.println("NoteId : " + noteId + "Loop Id : " + noteItem.getId());
+			if(noteItem.getId().equals(noteId)) {
 				noteItem.setTitle(title);
 				noteItem.setDecription(description);
-				break;
+				noteItem.setUpdatedAt(new Date());
+				return Optional.ofNullable(noteItem);
 			}
 		}
-
-		return notes;
+		return Optional.empty();
 	}
 	
-	public List<NoteModel> deleteNote(Long noteId) {
+	public List<NoteModel> deleteNote(String noteId) {
 		
 		List<NoteModel> updatedNotes = notes.stream()
 		.filter(note -> note.getId() != noteId).toList();
