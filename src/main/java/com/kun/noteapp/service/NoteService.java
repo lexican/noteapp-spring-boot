@@ -49,14 +49,21 @@ public class NoteService {
 		return Optional.empty();
 	}
 
-	public List<NoteModel> deleteNote(String noteId) {
+	public Boolean deleteNote(String noteId) {
 
-		List<NoteModel> updatedNotes = notes.stream().filter(note -> note.getId() != noteId).toList();
+		Boolean isNoteExist = notes.stream().filter(note -> note.getId().equals(noteId)).findFirst().isPresent();
+		
+		System.out.println("isPresent : " + isNoteExist.toString() + noteId);
 
-		notes.clear();
-		notes.addAll(updatedNotes);
+		if (isNoteExist) {
+			List<NoteModel> updatedNotes = notes.stream().filter(note -> !note.getId().equals(noteId)).toList();
+			notes.clear();
+			notes.addAll(updatedNotes);
+			return true;
+		}
 
-		return notes;
+		return false;
+
 	}
 
 }

@@ -8,8 +8,10 @@ import java.util.UUID;
 import jakarta.validation.Valid;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -53,6 +55,17 @@ public class NoteController {
 			return ResponseEntity.ok(new GetNoteResponse("Note successfully updated", "200", updatedNote.get()));
 		}
 		return ResponseEntity.badRequest().body(new BaseResponse("Note does not exist", "400"));
+	}
+	
+	@DeleteMapping("/notes/{noteId}")
+	public ResponseEntity<Object> deleteNote(@PathVariable String noteId ){
+		
+	 Boolean isNoteExist = _nodeService.deleteNote(noteId);
+	 
+	 if(isNoteExist) {
+		 return ResponseEntity.ok(new BaseResponse("Note successfully deleted", "200"));
+	 }
+	 return ResponseEntity.badRequest().body(new BaseResponse("Note does not exist", "400"));
 	}
 
 }
