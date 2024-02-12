@@ -1,7 +1,5 @@
 package com.kun.noteapp.dto.requests;
 
-
-
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;

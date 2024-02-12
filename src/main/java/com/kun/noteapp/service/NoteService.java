@@ -13,16 +13,16 @@ public class NoteService {
 	public NoteService() {
 		notes = new ArrayList<>();
 	}
-	
+
 	public List<NoteModel> getAllNotes() {
 		return notes;
 	}
-	
+
 	public Optional<NoteModel> getNote(String noteId) {
 		NoteModel note = null;
-		
-		for(NoteModel noteItem : notes) {
-			if(noteItem.getId() == noteId) {
+
+		for (NoteModel noteItem : notes) {
+			if (noteItem.getId() == noteId) {
 				note = noteItem;
 				break;
 			}
@@ -34,20 +34,12 @@ public class NoteService {
 		notes.add(note);
 		return notes;
 	}
-	
-	
+
 	public Optional<NoteModel> updateNote(String title, String description, String noteId) {
-		
-		System.out.println("");
-		System.out.println("");
-		
-		System.out.println("Title : " + title);
-		System.out.println("Description : " + description);
-		System.out.println("NoteId : " + noteId);
-		
-		for(NoteModel noteItem : notes) {
+
+		for (NoteModel noteItem : notes) {
 			System.out.println("NoteId : " + noteId + "Loop Id : " + noteItem.getId());
-			if(noteItem.getId().equals(noteId)) {
+			if (noteItem.getId().equals(noteId)) {
 				noteItem.setTitle(title);
 				noteItem.setDecription(description);
 				noteItem.setUpdatedAt(new Date());
@@ -56,16 +48,15 @@ public class NoteService {
 		}
 		return Optional.empty();
 	}
-	
+
 	public List<NoteModel> deleteNote(String noteId) {
-		
-		List<NoteModel> updatedNotes = notes.stream()
-		.filter(note -> note.getId() != noteId).toList();
+
+		List<NoteModel> updatedNotes = notes.stream().filter(note -> note.getId() != noteId).toList();
 
 		notes.clear();
 		notes.addAll(updatedNotes);
-		
+
 		return notes;
 	}
-	
+
 }

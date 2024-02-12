@@ -46,7 +46,6 @@ public class NoteController {
 
 	@PatchMapping("/notes")
 	public ResponseEntity<Object> updateNote(@Valid @RequestBody UpdateNoteRequest note) {
-		System.out.println("Note body : " + note.toString());
 		Optional<NoteModel> updatedNote = _nodeService.updateNote(note.getTitle(), note.getDescription(),
 				note.getNoteId());
 

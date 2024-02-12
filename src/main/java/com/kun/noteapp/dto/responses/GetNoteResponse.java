@@ -1,7 +1,5 @@
 package com.kun.noteapp.dto.responses;
 
-import java.util.List;
-
 import com.kun.noteapp.models.NoteModel;
 
 import lombok.AllArgsConstructor;
@@ -18,15 +16,14 @@ import lombok.experimental.SuperBuilder;
 @Data
 @SuperBuilder(toBuilder = true)
 public class GetNoteResponse extends BaseResponse {
-	
-	
+
 	NoteModel data;
-	
+
 	public GetNoteResponse(String message, String status, NoteModel note) {
 		super(message, status);
-		
+
 		this.data = note;
-		
+
 	}
-	
+
 }
