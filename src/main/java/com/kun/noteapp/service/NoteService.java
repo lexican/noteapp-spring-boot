@@ -22,7 +22,7 @@ public class NoteService {
 		NoteModel note = null;
 
 		for (NoteModel noteItem : notes) {
-			if (noteItem.getId() == noteId) {
+			if (noteItem.getId().equals(noteId)) {
 				note = noteItem;
 				break;
 			}
@@ -52,8 +52,6 @@ public class NoteService {
 	public Boolean deleteNote(String noteId) {
 
 		Boolean isNoteExist = notes.stream().filter(note -> note.getId().equals(noteId)).findFirst().isPresent();
-		
-		System.out.println("isPresent : " + isNoteExist.toString() + noteId);
 
 		if (isNoteExist) {
 			List<NoteModel> updatedNotes = notes.stream().filter(note -> !note.getId().equals(noteId)).toList();

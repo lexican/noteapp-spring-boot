@@ -58,7 +58,7 @@ public class NoteController {
 	}
 	
 	@DeleteMapping("/notes/{noteId}")
-	public ResponseEntity<Object> deleteNote(@PathVariable String noteId ){
+	public ResponseEntity<Object> getNote(@PathVariable String noteId ){
 		
 	 Boolean isNoteExist = _nodeService.deleteNote(noteId);
 	 
@@ -66,6 +66,18 @@ public class NoteController {
 		 return ResponseEntity.ok(new BaseResponse("Note successfully deleted", "200"));
 	 }
 	 return ResponseEntity.badRequest().body(new BaseResponse("Note does not exist", "400"));
+	}
+	
+	@GetMapping("/notes/{noteId}")
+	public ResponseEntity<Object> deleteNote(@PathVariable String noteId ){
+		
+	 Optional<NoteModel> note = _nodeService.getNote(noteId);
+	 
+
+		if (note.isPresent()) {
+			return ResponseEntity.ok(new GetNoteResponse("Note successfully retrieved", "200", note.get()));
+		}
+		return ResponseEntity.badRequest().body(new BaseResponse("Note does not exist", "400"));
 	}
 
 }
