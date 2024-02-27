@@ -1,6 +1,6 @@
 # Note App
 
-This Note App is built with Spring Boot and demostrates how CRUD APIs work
+This Note app is built with Spring Boot and demonstrates how CRUD APIs work.
 
 <br>
 
@@ -8,8 +8,9 @@ This Note App is built with Spring Boot and demostrates how CRUD APIs work
 
 - Implement create note
 - Implement update note by note Id
-- Implement edit note by Id
-- Imlement delete note by Id
+- Implement edit note by note Id
+- Implement delete note by note Id
+- Implement get all notes
 - Used Lombok to make model classes more robust
 - Used spring boot starter validation to handle validation
 
