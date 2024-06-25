@@ -47,7 +47,7 @@ To create a note, make a POST request to http://localhost:8080/api/notes and pas
 
 - Update a single note
 
-To update a note, make a PATCH request to http://localhost:8080/api/notes and pass the note title, description and most importantly the nodeId in the request body.
+To update a note, make a PATCH request to http://localhost:8080/api/notes/{noteId} and pass the note title, description and most importantly the nodeId in the request body.
 
 - Delete a single note
 
